@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koringa da Roleta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="topo">
+      <div class="logo-area">
+        <div class="joker-icon">🃏</div>
+        <div>
+          <h1>KORINGA DA ROLETA</h1>
+          <p>Leitura independente dos últimos 7 giros</p>
+        </div>
+      </div>
+      <div class="status-sistema"><span class="status-dot"></span>SISTEMA ATIVO</div>
+    </header>
+
+    <section class="card painel-giros">
+      <div class="titulo-card">
+        <div>
+          <h2>🎰 Últimos 7 Giros</h2>
+          <span>Digite os resultados na ordem em que saíram.</span>
+        </div>
+      </div>
+      <div class="linha-giros">
+        <div class="giros-grid">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="1">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="2">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="3">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="4">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="5">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="6">
+          <input type="number" min="0" max="36" class="giro-input" placeholder="7">
+        </div>
+        <div class="botoes">
+          <button id="btnAnalisar" class="btn principal">🃏 ANALISAR MESA</button>
+          <button id="btnLimpar" class="btn secundario">LIMPAR</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card proximo-giro">
+      <div class="proximo-label">
+        <strong>🎯 PRÓXIMO GIRO</strong>
+        <span>Registre o resultado para conferir os sinais ativos.</span>
+      </div>
+      <div class="registro-proximo">
+        <input type="number" id="proximoNumero" min="0" max="36" placeholder="0–36">
+        <button id="btnRegistrarGiro" class="btn principal">🎯 REGISTRAR GIRO</button>
+      </div>
+      <div id="resultadoProximoGiro" class="resultado-proximo">Aguardando análise e próximo resultado...</div>
+    </section>
+
+    <section class="card leitura-faixa">
+      <div class="joker-mini">🃏</div>
+      <div class="leitura-faixa-conteudo">
+        <span class="mini-label">LEITURA DO KORINGA</span>
+        <h2 id="melhorEstrategia">Aguardando os 7 giros...</h2>
+        <p id="mensagemPrincipal">Informe os 7 últimos resultados para iniciar a leitura.</p>
+      </div>
+      <div class="leitura-score">
+        <div class="score-circle"><span id="scorePrincipal">0%</span></div>
+        <div class="score-info">
+          <span>FORÇA INTERNA DA LEITURA</span>
+          <div class="barra"><div id="barraPrincipal" class="barra-preenchida"></div></div>
+        </div>
+      </div>
+      <div id="statusPrincipal" class="status aguardar">⏳ AGUARDAR</div>
+    </section>
+
+    <section class="sinais-principais performance-grid">
+      <article class="card performance-card">
+        <div class="performance-topo">
+          <div><span class="icone">🎯</span><h3>SETORES</h3></div>
+          <strong id="sinalStatusSetores" class="sinal-status aguardar">AGUARDAR</strong>
+        </div>
+        <div class="metricas-3">
+          <div class="metrica green"><strong id="setoresGreen">0</strong><span>GREEN</span></div>
+          <div class="metrica red"><strong id="setoresRed">0</strong><span>RED</span></div>
+          <div class="metrica acerto"><strong id="sinalScoreSetores">0%</strong><span>FORÇA</span></div>
+        </div>
+        <div class="faixa-sinal"><b id="sinalEntradaSetores">Nenhuma entrada</b><small id="sinalNumerosSetores">Voisins • Tiers • Orphelins</small></div>
+        <div class="detalhes-setores">
+          <div class="sinal-card-linha"><span>Voisins</span><strong id="voisinsPct">0%</strong></div><div class="progress"><div id="voisinsBar" class="progress-fill"></div></div>
+          <div class="sinal-card-linha"><span>Tiers</span><strong id="tiersPct">0%</strong></div><div class="progress"><div id="tiersBar" class="progress-fill"></div></div>
+          <div class="sinal-card-linha"><span>Orphelins</span><strong id="orphelinsPct">0%</strong></div><div class="progress"><div id="orphelinsBar" class="progress-fill"></div></div>
+          <div class="rodape-card"><span>Dominante</span><strong id="setorDominante">--</strong></div>
+        </div>
+        <span id="statusSetores" class="mini-status escondido">AGUARDAR</span>
+      </article>
+
+      <article class="card performance-card">
+        <div class="performance-topo">
+          <div><span class="icone">🔴⚫</span><h3>CORES</h3></div>
+          <strong id="sinalStatusCores" class="sinal-status aguardar">AGUARDAR</strong>
+        </div>
+        <div class="metricas-3">
+          <div class="metrica green"><strong id="coresGreen">0</strong><span>GREEN</span></div>
+          <div class="metrica red"><strong id="coresRed">0</strong><span>RED</span></div>
+          <div class="metrica acerto"><strong id="coresAcerto">0%</strong><span>ACERTO</span></div>
+        </div>
+        <div class="faixa-sinal"><b id="sinalEntradaCores">Nenhuma entrada</b><small>VERMELHO ou PRETO</small></div>
+        <div class="resultado-grande"><span id="corDominante">--</span><strong id="corPct">0%</strong></div>
+        <div class="tendencia"><span>Tendência</span><strong id="corTendencia">--</strong></div>
+        <div class="analise-texto" id="corTexto">Nenhum padrão identificado.</div>
+        <span id="sinalScoreCores" class="escondido">0%</span><span id="statusCores" class="mini-status escondido">AGUARDAR</span>
+      </article>
+
+      <article class="card performance-card">
+        <div class="performance-topo">
+          <div><span class="icone">⚖️</span><h3>PAR / ÍMPAR</h3></div>
+          <strong id="sinalStatusParImpar" class="sinal-status aguardar">AGUARDAR</strong>
+        </div>
+        <div class="metricas-3">
+          <div class="metrica green"><strong id="parImparGreen">0</strong><span>GREEN</span></div>
+          <div class="metrica red"><strong id="parImparRed">0</strong><span>RED</span></div>
+          <div class="metrica acerto"><strong id="parImparAcerto">0%</strong><span>ACERTO</span></div>
+        </div>
+        <div class="faixa-sinal"><b id="sinalEntradaParImpar">Nenhuma entrada</b><small>PAR ou ÍMPAR</small></div>
+        <div class="resultado-grande"><span id="parImparDominante">--</span><strong id="parImparPct">0%</strong></div>
+        <div class="tendencia"><span>Tendência</span><strong id="parImparTendencia">--</strong></div>
+        <div class="analise-texto" id="parImparTexto">Nenhum padrão identificado.</div>
+        <span id="sinalScoreParImpar" class="escondido">0%</span><span id="statusParImpar" class="mini-status escondido">AGUARDAR</span>
+      </article>
+
+      <article class="card performance-card">
+        <div class="performance-topo">
+          <div><span class="icone">↕️</span><h3>ALTOS / BAIXOS</h3></div>
+          <strong id="sinalStatusAltosBaixos" class="sinal-status aguardar">AGUARDAR</strong>
+        </div>
+        <div class="metricas-3">
+          <div class="metrica green"><strong id="altosBaixosGreen">0</strong><span>GREEN</span></div>
+          <div class="metrica red"><strong id="altosBaixosRed">0</strong><span>RED</span></div>
+          <div class="metrica acerto"><strong id="altosBaixosAcerto">0%</strong><span>ACERTO</span></div>
+        </div>
+        <div class="faixa-sinal"><b id="sinalEntradaAltosBaixos">Nenhuma entrada</b><small>BAIXOS 1–18 • ALTOS 19–36</small></div>
+        <div class="resultado-grande"><span id="altoBaixoDominante">--</span><strong id="altoBaixoPct">0%</strong></div>
+        <div class="tendencia"><span>Tendência</span><strong id="altoBaixoTendencia">--</strong></div>
+        <div class="analise-texto" id="altoBaixoTexto">Nenhum padrão identificado.</div>
+        <span id="sinalScoreAltosBaixos" class="escondido">0%</span><span id="statusAltosBaixos" class="mini-status escondido">AGUARDAR</span>
+      </article>
+    </section>
+
+    <section class="card historico">
+      <div class="titulo-card">
+        <div><h2>📊 Histórico do Koringa</h2><span>Leitura rápida dos resultados, estratégias e tentativas.</span></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><span>GREENS</span><strong id="totalGreens">0</strong></div>
+        <div class="stat"><span>REDS FINAIS</span><strong id="totalReds">0</strong></div>
+        <div class="stat"><span>TAXA DE ACERTO</span><strong id="taxaAcerto">0%</strong></div>
+        <div class="stat"><span>CICLOS</span><strong id="totalSinais">0</strong></div>
+      </div>
+      <div id="historicoLista" class="historico-vazio">Nenhum ciclo encerrado ainda.</div>
+    </section>
+
+    <footer>🃏 KORINGA DA ROLETA • Sistema experimental de leitura • Diego Cardoso</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

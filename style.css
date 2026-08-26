@@ -1,0 +1,332 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--verde:#00ffa3;--verde2:#00c97c;--roxo:#b35cff;--texto:#f4fff9;--muted:#8ba59b;--amarelo:#ffd166;--azul:#4aa3ff}
+body{min-height:100vh;font-family:Segoe UI,Arial,sans-serif;color:var(--texto);background:radial-gradient(circle at 15% 0%,rgba(0,255,163,.08),transparent 28%),linear-gradient(180deg,#010705,#000 70%);overflow-x:hidden}
+body:before{content:"01  17  32  0  26  15  19  04  21  02  25   36  11  30  08\A TIERS  VOISINS  ORPHELINS  00  01  10  11  01  00  10";white-space:pre;position:fixed;inset:-6%;z-index:-1;pointer-events:none;color:rgba(0,255,163,.04);font:700 16px/4 Consolas;letter-spacing:8px;transform:rotate(-5deg)}
+.container{width:min(1500px,calc(100% - 20px));margin:auto;padding:10px 0 24px}
+.topo{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:8px}
+.logo-area{display:flex;align-items:center;gap:10px}.joker-icon{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:30px;border:1px solid rgba(0,255,163,.25);background:linear-gradient(145deg,rgba(0,255,163,.08),rgba(179,92,255,.10))}
+.logo-area h1{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(27px,3.2vw,40px);letter-spacing:2px;line-height:1;background:linear-gradient(90deg,#fff,#00ffa3 42%,#b35cff 72%,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}.logo-area p{margin-top:4px;color:var(--muted);font-size:11px}
+.status-sistema{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid rgba(0,255,163,.22);color:var(--verde);font-size:9px;font-weight:900}.status-dot{width:6px;height:6px;border-radius:50%;background:var(--verde);box-shadow:0 0 10px var(--verde)}
+.card{background:linear-gradient(145deg,rgba(4,15,11,.95),rgba(1,7,5,.95));border:1px solid rgba(0,255,163,.18);border-radius:12px;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+.painel-giros{padding:12px 14px;margin-bottom:8px}.titulo-card{margin-bottom:8px}.titulo-card h2{font-size:15px}.titulo-card span{display:block;margin-top:2px;color:var(--muted);font-size:9px}
+.linha-giros{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}.giros-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.giro-input,#proximoNumero{width:100%;height:50px;border-radius:9px;border:2px solid var(--verde);outline:none;background:linear-gradient(180deg,rgba(0,255,163,.10),rgba(0,45,28,.55));color:#fff!important;-webkit-text-fill-color:#fff!important;text-align:center;font:900 23px Consolas;text-shadow:0 0 8px #fff,0 0 16px rgba(0,255,163,.35);box-shadow:inset 0 0 18px rgba(0,255,163,.08),0 0 13px rgba(0,255,163,.16)}
+.giro-input::placeholder,#proximoNumero::placeholder{color:rgba(255,255,255,.25)!important;-webkit-text-fill-color:rgba(255,255,255,.25)!important;text-shadow:none}
+.botoes{display:flex;gap:7px}.btn{min-height:42px;padding:9px 17px;border-radius:8px;border:0;cursor:pointer;font-size:10px;font-weight:900;white-space:nowrap}.btn.principal{background:linear-gradient(90deg,#00e88e,#5cf4ca);color:#00140c}.btn.secundario{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:#cbd7d2}
+.proximo-giro{padding:10px 14px;margin-bottom:8px;display:grid;grid-template-columns:minmax(220px,.8fr) auto minmax(280px,1.1fr);gap:12px;align-items:center}.proximo-label strong{display:block;font-size:14px}.proximo-label span{display:block;margin-top:2px;color:var(--muted);font-size:9px}.registro-proximo{display:grid;grid-template-columns:170px 210px;gap:8px}#proximoNumero{height:46px;color:var(--verde)!important;-webkit-text-fill-color:var(--verde)!important}.resultado-proximo{min-height:42px;padding:8px 10px;border:1px solid rgba(179,92,255,.18);border-radius:8px;background:rgba(10,5,15,.35);color:var(--muted);font-size:9px;line-height:1.35;overflow:auto}
+.leitura-faixa{padding:11px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto minmax(260px,1.3fr) minmax(250px,.8fr) auto;align-items:center;gap:12px}.joker-mini{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:30px;background:radial-gradient(circle,rgba(179,92,255,.14),rgba(0,255,163,.04));border:1px solid rgba(179,92,255,.22)}.mini-label{color:var(--roxo);font-size:8px;font-weight:900;letter-spacing:1.5px}.leitura-faixa h2{margin-top:3px;font-size:18px}.leitura-faixa p{margin-top:4px;color:var(--muted);font-size:9px}.leitura-score{display:flex;align-items:center;gap:9px}.score-circle{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(0,255,163,.22)}.score-circle span{font:900 14px Consolas;color:var(--verde)}.score-info{flex:1}.score-info>span{color:var(--muted);font-size:7px;font-weight:900}.barra{height:5px;margin-top:4px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}.barra-preenchida{height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#b35cff,#00ffa3)}
+.status{padding:5px 9px;border-radius:999px;font-size:8px;font-weight:900}.status.aguardar{color:var(--amarelo);border:1px solid rgba(255,209,102,.18);background:rgba(255,209,102,.06)}
+.sinais-principais{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}.sinal-card{padding:11px;min-height:220px}.sinal-card-topo{display:flex;justify-content:space-between;align-items:center;gap:7px}.sinal-card-topo>div{display:flex;align-items:center;gap:6px}.sinal-card-topo h3{font-size:11px}.icone{font-size:16px}.sinal-status{padding:4px 6px;border-radius:6px;font-size:7px;font-weight:900}.sinal-status.aguardar{color:var(--amarelo);border:1px solid rgba(255,209,102,.15);background:rgba(255,209,102,.06)}.sinal-status.entrada{color:var(--verde);border:1px solid rgba(0,255,163,.20);background:rgba(0,255,163,.08)}.sinal-status.possivel{color:#d68cff;border:1px solid rgba(179,92,255,.18);background:rgba(179,92,255,.07)}.sinal-status.observacao{color:var(--azul);border:1px solid rgba(74,163,255,.18);background:rgba(74,163,255,.07)}
+.sinal-card-score{margin-top:10px;color:var(--verde);font:900 28px Consolas}.sinal-card-entrada{margin-top:4px;font-size:13px;font-weight:900}.sinal-card-detalhe{margin-top:4px;color:var(--muted);font-size:8px}.sinal-card-linha{display:flex;justify-content:space-between;margin:7px 0 4px;color:#b8cbc2;font-size:8px}.sinal-card-linha strong{color:#fff}.progress{height:4px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#00ffa3)}.rodape-card{display:flex;justify-content:space-between;margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:8px}.rodape-card strong{color:var(--verde)}
+.resultado-grande{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px}.resultado-grande span{font-size:17px;font-weight:900}.resultado-grande strong{color:var(--verde);font:900 23px Consolas}.tendencia{display:flex;justify-content:space-between;margin-top:14px;padding:7px;border-radius:7px;background:rgba(255,255,255,.025);color:var(--muted);font-size:8px}.tendencia strong{color:#d68cff}.analise-texto{margin-top:8px;color:var(--muted);font-size:8px;line-height:1.35}.escondido{display:none!important}
+.historico{padding:10px 14px}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.stat{padding:8px;border-radius:8px;background:rgba(0,0,0,.20);border:1px solid rgba(0,255,163,.07)}.stat span{display:block;color:var(--muted);font-size:7px;font-weight:900}.stat strong{display:block;margin-top:3px;color:var(--verde);font:900 18px Consolas}.historico-vazio{margin-top:7px;padding:9px;border-radius:8px;background:rgba(0,0,0,.20);color:var(--muted);text-align:center;font-size:8px}.historico-lista{display:grid;gap:6px;margin-top:7px}.historico-item{padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.045)}.historico-topo{display:flex;justify-content:space-between}.historico-topo strong{color:var(--verde)}.historico-topo span,.historico-resultados{color:var(--muted);font-size:8px}.historico-resultados{margin-top:4px}.resultado-numero{display:inline-block;margin-right:8px}.resultado-numero strong{color:var(--verde);font:900 15px Consolas}.resultado-sinais{display:inline;line-height:1.4}
+footer{padding:9px;text-align:center;color:#3e534a;font-size:7px;letter-spacing:.7px}
+@media(max-width:1100px){.linha-giros{grid-template-columns:1fr}.botoes{justify-content:center}.proximo-giro{grid-template-columns:1fr}.registro-proximo{justify-content:center}.leitura-faixa{grid-template-columns:auto 1fr}.leitura-score,.status{grid-column:2}.sinais-principais{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.giros-grid{grid-template-columns:repeat(4,1fr)}.sinais-principais{grid-template-columns:1fr}.registro-proximo{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* V3 — desempenho GREEN / RED por estratégia */
+.performance-grid{grid-template-columns:repeat(4,1fr)}
+.performance-card{padding:11px;min-height:230px}
+.performance-topo{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.performance-topo>div{display:flex;align-items:center;gap:6px}.performance-topo h3{font-size:11px}
+.metricas-3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
+.metrica{min-height:66px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.025)}
+.metrica strong{font:900 23px Consolas}.metrica span{margin-top:3px;font-size:7px;font-weight:900}
+.metrica.green{border-color:rgba(0,255,163,.17)}.metrica.green strong{color:var(--verde)}
+.metrica.red{border-color:rgba(255,66,102,.17)}.metrica.red strong{color:#ff4266}
+.metrica.acerto{border-color:rgba(255,255,255,.10)}.metrica.acerto strong{color:#fff}
+.faixa-sinal{margin-top:8px;padding:7px 8px;border:1px solid rgba(0,255,163,.16);border-radius:8px;background:rgba(0,255,163,.035);text-align:center}
+.faixa-sinal b{display:block;color:var(--verde);font-size:9px}.faixa-sinal small{display:block;margin-top:3px;color:var(--muted);font-size:7px}
+.detalhes-setores{margin-top:6px}
+@media(max-width:1100px){.performance-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.performance-grid{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   V3.1 — FONTES MAIORES / MELHOR LEGIBILIDADE
+   Mantém a estrutura e o motor da V3.
+   ========================================================= */
+
+.titulo-card h2 { font-size: 18px; }
+.titulo-card span { font-size: 11px; }
+
+.performance-topo h3 { font-size: 15px; }
+.performance-topo .icone { font-size: 19px; }
+
+.sinal-status { font-size: 10px; padding: 5px 8px; }
+
+.metrica { min-height: 76px; }
+.metrica strong { font-size: 30px; }
+.metrica span { font-size: 10px; }
+
+.faixa-sinal { padding: 9px 10px; }
+.faixa-sinal b { font-size: 13px; }
+.faixa-sinal small { font-size: 10px; }
+
+.sinal-card-linha { font-size: 11px; }
+.rodape-card { font-size: 11px; }
+
+.resultado-grande span { font-size: 21px; }
+.resultado-grande strong { font-size: 29px; }
+
+.tendencia { font-size: 11px; }
+.analise-texto { font-size: 11px; line-height: 1.5; }
+
+.leitura-faixa h2 { font-size: 21px; }
+.leitura-faixa p { font-size: 11px; }
+.mini-label { font-size: 10px; }
+.score-info > span { font-size: 9px; }
+.status { font-size: 10px; }
+
+.proximo-label strong { font-size: 16px; }
+.proximo-label span { font-size: 11px; }
+.resultado-proximo { font-size: 11px; }
+
+.stat span { font-size: 10px; }
+.stat strong { font-size: 24px; }
+
+.historico-vazio { font-size: 11px; }
+.historico-topo strong { font-size: 13px; }
+.historico-topo span,
+.historico-resultados { font-size: 11px; line-height: 1.5; }
+.resultado-numero strong { font-size: 19px; }
+
+footer { font-size: 9px; }
+
+
+/* V3.2 — texto do resultado do próximo giro mais legível */
+.resultado-proximo {
+    font-size: 13px;
+    line-height: 1.55;
+}
+.resultado-sinais {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.55;
+}
+.resultado-numero {
+    font-size: 12px;
+}
+.resultado-numero strong {
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   HISTÓRICO V4 — SIMPLES E INTUITIVO
+   ========================================================= */
+
+.historico-tabela-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 14px;
+}
+
+.historico-tabela {
+    min-width: 1050px;
+    border: 1px solid rgba(0, 255, 153, .22);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(2, 12, 9, .78);
+}
+
+.hist-head,
+.hist-row {
+    display: grid;
+    grid-template-columns: 120px 150px minmax(420px, 1fr) 120px 170px 105px;
+    align-items: center;
+    gap: 14px;
+}
+
+.hist-head {
+    padding: 13px 16px;
+    color: #67e8a8;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .7px;
+    border-bottom: 1px solid rgba(0, 255, 153, .24);
+    background: rgba(0, 255, 153, .035);
+}
+
+.hist-row {
+    padding: 15px 16px;
+    min-height: 82px;
+    border-bottom: 1px solid rgba(255, 255, 255, .065);
+}
+
+.hist-row:last-child {
+    border-bottom: 0;
+}
+
+.hist-col {
+    min-width: 0;
+}
+
+.hist-numero {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hist-numero strong {
+    color: #00f5a0;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.hist-indice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 6px;
+    border-radius: 8px;
+    color: #8aa89c;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,.09);
+}
+
+.hist-resultado {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 900;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.hist-resultado.green { color: #00f5a0; }
+.hist-resultado.red { color: #ff4265; }
+.hist-resultado.red-parcial { color: #ffb347; }
+.hist-resultado.pausa { color: #65a9ff; }
+.hist-resultado.neutro { color: #a9b8b2; }
+
+.hist-estrategia {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.hist-detalhe {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: #d7e5df;
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.hist-dot {
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-top: 5px;
+    background: #83958e;
+}
+
+.hist-detalhe.green .hist-dot { background: #00f5a0; }
+.hist-detalhe.red .hist-dot { background: #ff3158; }
+.hist-detalhe.red-parcial .hist-dot { background: #ffb347; }
+.hist-detalhe.pausa .hist-dot { background: #65a9ff; }
+
+.hist-tentativa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 58px;
+    min-height: 32px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: #00f5a0;
+    font-size: 14px;
+    font-weight: 900;
+    border: 1px solid rgba(0, 245, 160, .35);
+    background: rgba(0, 245, 160, .055);
+}
+
+.hist-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 900;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.hist-status.encerrado {
+    color: #00f5a0;
+    border: 1px solid rgba(0, 245, 160, .4);
+    background: rgba(0, 245, 160, .06);
+}
+
+.hist-status.pausa {
+    color: #72afff;
+    border: 1px solid rgba(101, 169, 255, .4);
+    background: rgba(101, 169, 255, .06);
+}
+
+.hist-status.andamento {
+    color: #ffb347;
+    border: 1px solid rgba(255, 179, 71, .38);
+    background: rgba(255, 179, 71, .06);
+}
+
+.hist-status.neutro {
+    color: #9db0a8;
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.hist-hora {
+    color: #a7bbb3;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.hist-sem-dado {
+    color: #71837c;
+    font-size: 12px;
+}
+
+.hist-legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 12px 4px 2px;
+    color: #8fa69d;
+    font-size: 11px;
+}
+
+.hist-legenda span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hist-legenda .leg {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.hist-legenda .leg.green { background: #00f5a0; }
+.hist-legenda .leg.red { background: #ff3158; }
+.hist-legenda .leg.pausa { background: #65a9ff; }
+
+@media (max-width: 900px) {
+    .historico-tabela {
+        min-width: 900px;
+    }
+
+    .hist-head,
+    .hist-row {
+        grid-template-columns: 105px 130px minmax(330px, 1fr) 100px 145px 90px;
+        gap: 10px;
+    }
+}
