@@ -4,6 +4,24 @@ const KORINGA_SUPABASE_URL = 'https://jqgkndzlbajtbzwvdaog.supabase.co';
 const KORINGA_SUPABASE_KEY = 'sb_publishable_f9-6kz8ywlLtNV27Sslb0A_At0Dib7P';
 const koringaSB = window.supabase.createClient(KORINGA_SUPABASE_URL, KORINGA_SUPABASE_KEY);
 
+let perfilAtualAdmin=null;
+function dataExpiracao(dias){const d=new Date();d.setDate(d.getDate()+dias);return d.toISOString();}
+function escapeAdmin(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+async function abrirAdmin(){if(!perfilAtualAdmin||perfilAtualAdmin.role!=='admin')return;document.getElementById('adminModal').classList.remove('auth-hidden');await carregarUsuariosAdmin();}
+function fecharAdmin(){document.getElementById('adminModal')?.classList.add('auth-hidden');}
+async function carregarUsuariosAdmin(){
+ const box=document.getElementById('adminUsers'),info=document.getElementById('adminRefresh');box.innerHTML='<div class="admin-empty">Carregando usuários...</div>';
+ const {data,error}=await koringaSB.from('profiles').select('*').order('created_at',{ascending:false});
+ if(error){box.innerHTML='<div class="admin-empty">Erro ao carregar: '+escapeAdmin(error.message)+'</div>';return;}
+ info.textContent=(data?.length||0)+' cadastro(s) encontrado(s).';
+ box.innerHTML=(data||[]).map(p=>{const validade=p.role==='admin'?'Sem vencimento':formatarValidade(p.expires_at);const login=p.email||p.login||('ID: '+String(p.id).slice(0,8)+'…');
+ return `<div class="admin-user"><div class="admin-user-top"><div><div class="admin-user-name">${escapeAdmin(p.nome||'Usuário')}</div><div class="admin-user-meta">${escapeAdmin(login)} • ${escapeAdmin(p.role||'user')} • validade: ${escapeAdmin(validade)}</div></div><span class="admin-status">${escapeAdmin((p.status||'pending').toUpperCase())}</span></div>${p.role==='admin'?'':`<div class="admin-actions"><button onclick="definirAcessoAdmin('${p.id}',30)">30 DIAS</button><button onclick="definirAcessoAdmin('${p.id}',60)">60 DIAS</button><button onclick="definirAcessoAdmin('${p.id}',90)">90 DIAS</button><button onclick="definirAcessoAdmin('${p.id}',365)">1 ANO</button><button onclick="ativarSemAlterarValidade('${p.id}')">ATIVAR</button><button class="danger" onclick="bloquearUsuarioAdmin('${p.id}')">BLOQUEAR</button></div>`}</div>`}).join('')||'<div class="admin-empty">Nenhum cadastro encontrado.</div>';
+}
+async function definirAcessoAdmin(id,dias){const {error}=await koringaSB.from('profiles').update({status:'active',expires_at:dataExpiracao(dias)}).eq('id',id);if(error){alert('Erro: '+error.message);return;}await carregarUsuariosAdmin();}
+async function ativarSemAlterarValidade(id){const {error}=await koringaSB.from('profiles').update({status:'active'}).eq('id',id);if(error){alert('Erro: '+error.message);return;}await carregarUsuariosAdmin();}
+async function bloquearUsuarioAdmin(id){const {error}=await koringaSB.from('profiles').update({status:'blocked'}).eq('id',id);if(error){alert('Erro: '+error.message);return;}await carregarUsuariosAdmin();}
+
+
 function authMsg(texto, tipo = 'wait') {
   const el = document.getElementById('authMessage');
   if (!el) return;
@@ -91,9 +109,11 @@ function liberarPainel(user, profile) {
   document.getElementById('appRoot').classList.remove('auth-hidden');
 
   const admin = profile.role === 'admin';
+  perfilAtualAdmin = profile;
   const validade = admin ? 'Sem vencimento' : formatarValidade(profile.expires_at);
   document.getElementById('accountInfo').innerHTML = `<strong>${profile.nome || user.email}</strong> • ${admin ? 'ADMIN' : 'USUÁRIO'} • validade: ${validade}`;
   document.getElementById('accountBadge').textContent = admin ? '👑 ADMIN' : '✅ ATIVO';
+  document.getElementById('accountBadge').onclick = admin ? abrirAdmin : null;
 }
 
 async function validarAcessoAtual() {
