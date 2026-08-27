@@ -349,3 +349,26 @@ footer { font-size: 9px; }
 .koringa-footer div:first-child { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
 .koringa-footer div:nth-child(2) { font-weight: 600; }
 .koringa-footer div:last-child { margin-top: 2px; font-size: 11px; opacity: .75; }
+
+/* V61 — Nova pegada visual. Apenas fundo/transparência. */
+body{position:relative;background:#010705}
+.koringa-bg{
+ position:fixed;inset:0;z-index:-2;pointer-events:none;
+ background:linear-gradient(180deg,rgba(0,7,5,.22),rgba(0,0,0,.38)),
+ url("koringa-background.png") center top/cover no-repeat;
+ opacity:.76;filter:saturate(.95) contrast(1.08) brightness(.82)
+}
+body:before{z-index:-1;color:rgba(0,255,163,.055)}
+.card{
+ background:linear-gradient(145deg,rgba(4,15,11,.80),rgba(1,7,5,.83));
+ backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);
+ box-shadow:0 12px 28px rgba(0,0,0,.34)
+}
+.performance-card{
+ background:linear-gradient(145deg,rgba(3,13,10,.76),rgba(0,5,4,.80))
+}
+.koringa-footer{
+ background:rgba(0,0,0,.66);
+ backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)
+}
+@media(max-width:700px){.koringa-bg{background-position:50% top;opacity:.60}}
