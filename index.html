@@ -44,7 +44,7 @@
     <div class="account-bar">
       <div class="account-info" id="accountInfo">Usuário autenticado.</div>
       <div class="account-actions">
-        <span id="accountBadge" class="account-badge">ATIVO</span>
+        <button id="accountBadge" class="account-badge admin-open-btn" type="button">ATIVO</button>
         <button class="account-logout" type="button" onclick="sairKoringa()">SAIR</button>
       </div>
     </div>
@@ -200,6 +200,14 @@
 
     <footer>🃏 KORINGA DA ROLETA • Sistema experimental de leitura • Diego Cardoso</footer>
   </main>
+
+<div id="adminModal" class="admin-modal auth-hidden" aria-hidden="true">
+ <div class="admin-box">
+  <div class="admin-head"><div><h2>👑 Administração de acessos</h2><div class="admin-user-meta">Aprovação, bloqueio e validade dos usuários.</div></div><button class="admin-close" type="button" onclick="fecharAdmin()">✕ FECHAR</button></div>
+  <div id="adminRefresh" class="admin-refresh"></div><div id="adminUsers" class="admin-users"><div class="admin-empty">Carregando usuários...</div></div>
+ </div>
+</div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
   <script src="auth.js"></script>
