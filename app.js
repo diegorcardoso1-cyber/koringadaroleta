@@ -2511,14 +2511,15 @@ function avaliarCicloNoGiro(
 
     /*
        =========================================
-       VERIFICAR GREEN
+       VERIFICAR GREEN / PROTEÇÃO ZERO
        =========================================
     */
 
+    const greenProtecaoZero =
+        numero === 0;
+
     const acertou =
-
-        valorReal !== "ZERO" &&
-
+        greenProtecaoZero ||
         valorReal ===
         alvoAtual;
 
@@ -2587,7 +2588,9 @@ function avaliarCicloNoGiro(
                 false,
 
             mensagem:
-                `🟢 GREEN — ${nome} → ${alvoGreen} NA ${tentativaGreen}ª TENTATIVA. CICLO ENCERRADO. ⏸️ Próximo giro será apenas de pausa.`
+                greenProtecaoZero
+                    ? `🟢 GREEN — PROTEÇÃO ZERO — ${nome} → ${alvoGreen} NA ${tentativaGreen}ª TENTATIVA. CICLO ENCERRADO. ⏸️ Próximo giro será apenas de pausa.`
+                    : `🟢 GREEN — ${nome} → ${alvoGreen} NA ${tentativaGreen}ª TENTATIVA. CICLO ENCERRADO. ⏸️ Próximo giro será apenas de pausa.`
         };
     }
 
