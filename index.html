@@ -7,7 +7,47 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container">
+  <section id="authGate" class="auth-gate">
+    <div class="auth-shell">
+      <div class="auth-brand">
+        <div class="auth-joker">🃏</div>
+        <h1>KORINGA DA ROLETA</h1>
+        <p id="authSubtitle">Acesso ao sistema</p>
+      </div>
+
+      <div id="authFormsArea">
+        <div class="auth-tabs">
+          <button id="tabLogin" class="auth-tab active" type="button" onclick="trocarAuthTab('login')">ENTRAR</button>
+          <button id="tabCadastro" class="auth-tab" type="button" onclick="trocarAuthTab('cadastro')">CRIAR CONTA</button>
+        </div>
+
+        <form id="loginForm" class="auth-form" onsubmit="fazerLogin(event)">
+          <div><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" autocomplete="email" required placeholder="seu@email.com"></div>
+          <div><label for="loginSenha">Senha</label><input id="loginSenha" type="password" autocomplete="current-password" required placeholder="Sua senha"></div>
+          <button class="auth-btn primary" type="submit">🔐 ENTRAR NO KORINGA</button>
+        </form>
+
+        <form id="cadastroForm" class="auth-form auth-hidden" onsubmit="fazerCadastro(event)">
+          <div><label for="cadNome">Nome</label><input id="cadNome" type="text" autocomplete="name" required placeholder="Seu nome"></div>
+          <div><label for="cadEmail">E-mail</label><input id="cadEmail" type="email" autocomplete="email" required placeholder="seu@email.com"></div>
+          <div><label for="cadSenha">Senha</label><input id="cadSenha" type="password" autocomplete="new-password" minlength="6" required placeholder="Mínimo 6 caracteres"></div>
+          <button class="auth-btn secondary" type="submit">📝 CRIAR CADASTRO</button>
+        </form>
+      </div>
+
+      <div id="authMessage" class="auth-message wait">Informe seus dados para acessar. Novos cadastros ficam aguardando aprovação do administrador.</div>
+      <div class="auth-note">Acesso sujeito à aprovação e validade definida pelo administrador.</div>
+    </div>
+  </section>
+
+  <main id="appRoot" class="container auth-hidden">
+    <div class="account-bar">
+      <div class="account-info" id="accountInfo">Usuário autenticado.</div>
+      <div class="account-actions">
+        <span id="accountBadge" class="account-badge">ATIVO</span>
+        <button class="account-logout" type="button" onclick="sairKoringa()">SAIR</button>
+      </div>
+    </div>
     <header class="topo">
       <div class="logo-area">
         <div class="joker-icon">🃏</div>
@@ -160,6 +200,8 @@
 
     <footer>🃏 KORINGA DA ROLETA • Sistema experimental de leitura • Diego Cardoso</footer>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
