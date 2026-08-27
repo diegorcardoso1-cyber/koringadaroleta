@@ -330,3 +330,22 @@ footer { font-size: 9px; }
         gap: 10px;
     }
 }
+
+
+/* Rodapé oficial - Koringa da Roleta */
+.koringa-footer {
+  width: 100%;
+  margin-top: 35px;
+  padding: 18px 10px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: .5px;
+  color: #8cffb0;
+  background: rgba(0,0,0,.55);
+  border-top: 1px solid rgba(0,255,120,.35);
+  text-shadow: 0 0 5px rgba(0,255,120,.6), 0 0 10px rgba(0,255,120,.25);
+}
+.koringa-footer div:first-child { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.koringa-footer div:nth-child(2) { font-weight: 600; }
+.koringa-footer div:last-child { margin-top: 2px; font-size: 11px; opacity: .75; }
